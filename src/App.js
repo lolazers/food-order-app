@@ -3,7 +3,6 @@ import './App.css';
 import styled from 'styled-components';
 import Header from './Components/Header';
 import MealOptions from './Components/MealOptions';
-
 // const ParentContainer = styled.div`
 //   display: flex;
 //   flex-direction: column;

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import CartIcon from './CartIcon';
+import CartModal from './CartModal';
 
 const ParentDiv = styled.div`
   display: flex;
@@ -25,6 +26,7 @@ const ItemsDiv = styled.div`
 const Cart = (props) => {
   return (
     <ParentDiv>
+      <CartModal />
       <CartIcon />
       <div>Your Cart</div>
       <ItemsDiv>{props.quantity || 0}</ItemsDiv>

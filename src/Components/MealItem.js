@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
+import { useCartContext } from './CartContext';
 
 const ParentDiv = styled.div`
   display: flex;
@@ -53,10 +54,26 @@ const AmountDiv = styled.div`
     background-color: #8a2b06;
     color: rgba(255, 255, 255, 0.9);
     font-weight: 600;
+    cursor: pointer;
   }
 `;
 
 const MealItem = (props) => {
+  const cartContext = useCartContext();
+
+  const quantityRef = useRef();
+
+  const addItemToCart = () => {
+    const item = {
+      id: props.id,
+      name: props.name,
+      description: props.description,
+      quantity: parseInt(quantityRef.current.value),
+      price: props.price,
+    };
+    cartContext.addToCart(item);
+  };
+
   return (
     <ParentDiv>
       <div>
@@ -67,9 +84,11 @@ const MealItem = (props) => {
       <AmountDiv>
         <div>
           <Amount>Amount</Amount>
-          <input type="number" />
+          <input type="number" defaultValue="1" ref={quantityRef} />
         </div>
-        <button type="button">+ Add</button>
+        <button type="button" onClick={addItemToCart}>
+          + Add
+        </button>
       </AmountDiv>
     </ParentDiv>
   );

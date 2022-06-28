@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import MealItem from './MealItem';
 
@@ -44,6 +44,7 @@ const MealOptions = () => {
         return (
           <MealItem
             key={meal.id}
+            id={meal.id}
             name={meal.name}
             description={meal.description}
             price={meal.price}

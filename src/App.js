@@ -1,4 +1,6 @@
+import React, { useState } from 'react';
 import logo from './logo.svg';
+import { CartProvider } from './Components/CartContext';
 import './App.css';
 import styled from 'styled-components';
 import Header from './Components/Header';
@@ -11,13 +13,15 @@ import MealOptions from './Components/MealOptions';
 //   /* height: 100vh; */
 // `;
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <Header />
-      <MealOptions />
+      <CartProvider>
+        <Header />
+        <MealOptions />
+      </CartProvider>
     </div>
   );
-}
+};
 
 export default App;

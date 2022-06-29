@@ -22,9 +22,6 @@ const HeaderDiv = styled.div`
   padding: 0 10%;
   top: 0;
   left: 0;
-
-  & div {
-  }
 `;
 
 const ImgDiv = styled.div`

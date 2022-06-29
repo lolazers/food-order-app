@@ -79,7 +79,7 @@ const MealItem = (props) => {
       <div>
         <Name>{props.name}</Name>
         <Description>{props.description}</Description>
-        <Price>{props.price}</Price>
+        <Price>${props.price}</Price>
       </div>
       <AmountDiv>
         <div>

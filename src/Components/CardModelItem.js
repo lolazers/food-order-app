@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useCartContext } from './CartContext';
 
 const ParentDiv = styled.div`
   display: flex;
@@ -56,19 +57,22 @@ const ButtonsDiv = styled.div`
   }
 `;
 
-const CardModelItem = () => {
+const CardModelItem = (props) => {
+  const cartContext = useCartContext();
   return (
     <ParentDiv>
       <div>
-        <h2>Sushi</h2>
+        <h2>{props.name}</h2>
         <QuantityDiv>
-          <p>16.50</p>
-          <input value="x1" disabled />
+          <p>${props.price}</p>
+          <input value={props.quantity} disabled />
         </QuantityDiv>
       </div>
       <ButtonsDiv>
-        <button>&#8211;</button>
-        <button>+</button>
+        <button onClick={() => cartContext.decrementOrder(props)}>
+          &#8211;
+        </button>
+        <button onClick={() => cartContext.incrementOrder(props)}>+</button>
       </ButtonsDiv>
     </ParentDiv>
   );

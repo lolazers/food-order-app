@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import CardModelItem from './CardModelItem';
+import { useCartContext } from './CartContext';
 
 const Background = styled.div`
   background-color: rgba(0, 0, 0, 0.7);
@@ -9,7 +10,7 @@ const Background = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 100;
+  /* z-index: 100; */
 `;
 
 const Modal = styled.div`
@@ -24,6 +25,7 @@ const Modal = styled.div`
   transform: translate(-50%, -50%);
   border-radius: 1rem;
   padding: 1rem;
+  /* z-index: 10; */
 `;
 
 const TotalDiv = styled.div`
@@ -56,17 +58,40 @@ const ModalButtons = styled.div`
 `;
 
 const CartModal = (props) => {
+  const cartContext = useCartContext();
+
   return (
     <Background>
       <Modal>
-        <CardModelItem />
+        {props.items.map((item) => {
+          return (
+            <CardModelItem
+              key={item.id}
+              id={item.id}
+              name={item.name}
+              price={item.price}
+              quantity={item.quantity}
+            />
+          );
+        })}
+
         <TotalDiv>
           <p>Total Amount</p>
-          <p>$3333</p>
+          <p>${props.totalAmount}</p>
         </TotalDiv>
         <ModalButtons>
-          <button type="button">Close</button>
-          <button type="button">Order</button>
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              cartContext.closeModal();
+            }}
+          >
+            Close
+          </button>
+          <button type="button" onClick={cartContext.order}>
+            Order
+          </button>
         </ModalButtons>
       </Modal>
     </Background>

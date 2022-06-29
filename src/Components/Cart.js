@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useCartContext } from './CartContext';
 import CartIcon from './CartIcon';
@@ -24,7 +24,7 @@ const ItemsDiv = styled.div`
   margin-left: 1rem;
 `;
 
-const Cart = (props) => {
+const Cart = () => {
   const cartContext = useCartContext();
   let { totalQuantity, cartTotal } = cartContext.cartItems.reduce(
     (total, cartItem) => {
@@ -40,11 +40,13 @@ const Cart = (props) => {
   );
 
   cartTotal = Math.round(cartTotal * 100) / 100;
-  console.log(totalQuantity, cartTotal);
 
   return (
-    <ParentDiv>
-      {/* <CartModal /> */}
+    <ParentDiv onClick={cartContext.showModal}>
+      {cartContext.cartModal && (
+        <CartModal items={cartContext.cartItems} totalAmount={cartTotal} />
+      )}
+
       <CartIcon />
       <div>Your Cart</div>
       <ItemsDiv>{totalQuantity}</ItemsDiv>

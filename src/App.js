@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
 import { CartProvider } from './Components/CartContext';
 import './App.css';
 import styled from 'styled-components';
